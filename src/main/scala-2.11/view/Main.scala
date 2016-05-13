@@ -17,7 +17,7 @@ object Main extends View {
         meta(name := "viewport", content := "width=device-width, initial-scale=1"),
         link(`type` := "text/css", rel := "stylesheet", href := "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css",
           media := "screen,projection"),
-        link(rel := "stylesheet", `type` := "css/stylesheet", href := "css/styles.css")
+        link(rel := "stylesheet", `type` := "css/stylesheet", href := "styles.css")
       ),
       body(
         header(sideNav(navTitle)),
