@@ -6,7 +6,6 @@ import org.scalajs.jquery.jQuery
 
 import scala.scalajs.js.JSApp
 import scala.scalajs.js.annotation.JSExport
-
 /**
   * Created by rotor on 3/21/2016.
   */
@@ -16,8 +15,7 @@ object TestLib extends JSApp {
 
   @JSExport
   def addNavButtonListener(): Unit = {
-    println("Listener")
-    var nav_button: dom.Element = document.getElementById("nav-button")
+    val nav_button: dom.Element = document.getElementById("nav-button")
     nav_button.addEventListener("click", (e: MouseEvent) => e match {
       case _ =>
         println("Button clicked")
@@ -28,7 +26,7 @@ object TestLib extends JSApp {
 
   @JSExport
   def addBodyListener(): Unit = {
-    var body_box: dom.Element = document.getElementById("content-box")
+    val body_box: dom.Element = document.getElementById("content-box")
     body_box.addEventListener("click", (e: MouseEvent) => e match {
       case _ =>
         e.preventDefault()
@@ -36,7 +34,7 @@ object TestLib extends JSApp {
     }, useCapture = false)
   }
 
-  val windowListener: scalajs.js.Function1[dom.MouseEvent, _] = (e:MouseEvent) => e match {
+  val windowListener: scalajs.js.Function1[dom.MouseEvent, _] = (e: MouseEvent) => e match {
     case _ =>
       addNavButtonListener()
       addBodyListener()
@@ -56,18 +54,18 @@ object TestLib extends JSApp {
       navBar.removeClass("inactive")
       navBar.addClass("active")
       navActive = true
-      disableBody()
+      jQuery(document.body).toggleClass("no-scroll")
     }
     else if (navBar.hasClass("active")) {
       navBar.removeClass("active")
       navBar.addClass("inactive")
       navActive = false
-      enableBody()
+      jQuery(document.body).toggleClass("no-scroll")
     }
     else {
       navBar.addClass("active")
       navActive = true
-      disableBody()
+      jQuery(document.body).toggleClass("no-scroll")
     }
   }
 
@@ -76,14 +74,6 @@ object TestLib extends JSApp {
     if (navActive) {
       toggleNav()
     }
-  }
-
-  def disableBody() {
-    jQuery(document.body).addClass("no-scroll")
-  }
-
-  def enableBody() {
-    jQuery(document.body).removeClass("no-scroll")
   }
 
 }

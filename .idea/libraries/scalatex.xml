@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="scalatex">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/target/scala-2.11/classes/scalatex" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

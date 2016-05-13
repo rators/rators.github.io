@@ -1,0 +1,123 @@
+<html><head><title>Rafael Torres Profile Site</title><link href="css/prism.css" rel="stylesheet" /><link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /><meta name="viewport" content="width=device-width, initial-scale=1" /><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" media="screen,projection" /><link rel="stylesheet" type="css/stylesheet" href="css/styles.css" /></head><body><header><div><nav class="top-bar white"><a href="#" data-activates="slide-out" class="button-collapse" style="color: black;"><i class="mdi-navigation-menu" style="margin-left: 15px;"></i></a><div class="container"><div class="nav-wrapper center-align"><a class="brand-logo">Blog</a><ul id="slide-out" class="side-nav fixed"><h1 style="; color:black;">RT</h1><div class="divider nav-divider"></div><li><a href="aboutme.html">About</a></li><div class="divider nav-divider"></div><li><a href="work.html">Blog</a></li><div class="divider nav-divider"></div><li><a href="#!">Contact Info | Resume</a></li><div class="divider nav-divider"></div></ul></div></div></nav><div class="divider" id="top-divider"></div></div></header><main class=""><div class="row"><div class="section col s12 m12 l12"><h1 class="header center-align left-on-large-only"></h1><div class="blog-card card white col s10 m10 l10"><div class="valign-wrapper"><div class="valign date-brick" style="background-color: lightgrey;">May 5th | 2016</div></div><div class="card-content black-text"><span class="card-title">Implementing a Priority Map in Scala (Map-like Queue)<div class="chip"><img src="images/scala.png" alt="Scala Language" class="chip-img">Scala</img></div></span><div class="divider"></div><p style="margin-top: 1em;;margin-bottom: 1em;;">
+During a school assignment that involved graph and
+shortest path algorithms I found myself in need of a map-like sorted data structure, with ordering determined by the values and not the keys <code>SortedMap</code>.
+There is an implementation of an immutable
+PriorityMap on GitHub already, though for the purposes of my assignment I would rather have mutability (I know...sue me).
+</p><h6 class="title3">Node</h6><p style="margin-top: 1em;;margin-bottom: 1em;;">Lets start off with a simple map node wrapper object to store our key value pairs. Since our map is sorted by
+by the value of it's key value pair we will have to implement the <code>Ordered</code> trait as well. We will consume an implicit
+converter to support <code>Rich</code> basic data type conversions for Int, Long, etc...
+      </p><p><pre><code class="language-scala">case class PMapNode[K, V](key: K, var value: V)(implicit ev: V => Ordered[V]) extends Ordered[PMapNode[K, V]] {
+  override def compare(that: PMapNode[K, V]): Int = this.value compare that.value
+}</code></pre></p><p style="margin-top: 1em;;margin-bottom: 1em;;">Now we can start creating the actual <code>PriorityMap</code> object. Our implementation will consist of a remix of sorts, consisting of both
+a heap to manage the ordering of our <code>PMapNodes</code>, backed by a map for linear read of the elements. To instantiate the map we will need the <code>types</code>
+for the key's and values as well as an implicit conversion for the Value type in the case that Value type V is not covariant with Ordered[V].
+      </p><p><pre><code class="language-scala"> class PriorityMap[K, V](initSize: Int = 16)(implicit ev: V => Ordered[V]) extends mutable.Map[K, V] {
+   ...
+   }
+      </code></pre></p><h6 class="title3">Rules of the Heaps</h6><p style="margin-top: 1em;;margin-bottom: 1em;;">
+To manage the ordering of our map we will use the classical heap data structure to store our <code>PMapNodes</code>.
+A heap consists of an <code>Array</code> of elements with three basic rules which create a <code>Binary Tree</code>.
+Rule 1: The root is always stored in index <code>1</code>.
+Rule 2: For any node in index <code>k</code> the left child is stored in index <code>2 * k</code>.
+Rule 3: For any node index <code>k</code> the right child is stored in index <code>2k + 1</code>.
+Rule 4: A node's parent index is equal to <code>k / 2</code> where <code>k</code> is the node's current index
+in the heap. Let's make some helper methods to help us manage these rules. It's also a good idea to make a type alias for the
+tuple of children so we don't forget what the tuple represents later on.
+      </p><pre><code class="language-scala">type ChildPair = ((Option[MapNode], Int), (Option[MapNode], Int))
+
+private def getChildren(index: Int): ChildPair = {
+  val leftInd = index * 2
+  val rightInd = leftInd + 1
+
+  (index * 2 <= population, index * 2 + 1 <= population) match {
+    case (hasLeft, hasRight) =>
+      val leftChild = hasLeft match {
+        case true => Some(heap(leftInd))
+        case false => None
+      }
+      val rightChild = hasRight match {
+        case true => Some(heap(rightInd))
+        case false => None
+      }
+
+      ((leftChild, leftInd), (rightChild, rightInd))
+  }
+
+}
+
+private def parentIndex(index: Int) = index / 2
+      </code></pre><p style="margin-top: 1em;;margin-bottom: 1em;;">
+Like a regular Binary Tree, the left child is smaller than its parent, and the right child is large than it's parent. We still have one issue though, accessing elements other than the
+first ordered element. To solve our access problem we will use a <code>Map</code> as an index map, with the same K type as our <code>PriorityMap</code> constructor argument and V typed as an Int.
+The <em>index</em> map's value set will match a Key to it's respective <code>PMapNode</code> in the heap. This index map will be updated at every insertion and removal operation.
+      </p><p style="margin-top: 1em;;margin-bottom: 1em;;">
+To manage the heap we need know it's element <code>count</code> and ensure that the element count
+never exceeds the size of the array containing the elements. We can now implement the values needed for our map.
+      </p><p><pre><code class="language-scala"> ...
+  type MapNode = PMapNode[K, V] // type alias for the PMapNode[K,V] type
+
+  val ROOT_INDEX = 1
+
+  // The root of the heap is always in index 1
+  private var heap = new Array[MapNode](initSize) //
+
+  private var population = 0
+
+  private var indexMap: mutable.HashMap[K, Int] = mutable.HashMap()
+
+  override def size = population
+  ...</code></pre></p><h6 class="title3">Functional Decomposition</h6><p style="margin-top: 1em;;margin-bottom: 1em;;">
+I prefer to functionally decompose an operation before I write out the final sequence calls needed to complete
+said operation. Let's think of a problem as if it was a Ninja Warrior obstacle course, where each section of the course requires a unique set of skills
+to be completed successfully. That's the functional decomposition in a nut shell, now lets start applying it to the operations we need to on
+this <code>Map</code>, starting with <code>Insertion</code> (the <code>+=</code> method in Scala-lingo).
+      </p><h6 class="title3">Inserting AKA +='ing</h6><p style="margin-top: 1em;;margin-bottom: 1em;;">Before we insert an element into our map we must first check if the array representing the heap is full, if it is then we double the size.
+      </p><pre><code class="language-scala">
+private def tryReload() = if (shouldReload) reload()
+
+private def shouldReload: Boolean = population.toDouble == heap.length.toDouble
+
+private def reload(): Unit = {
+    heap ++= new Array[MapNode](heap.length)
+}
+ </code></pre><p style="margin-top: 1em;;margin-bottom: 1em;;">We'll try to reload before every insertion to be safe. Now that we know it is safe to insert
+into our heap we must determine whether we are <code>updating</code> the value of a pre-existing key,
+or <code>inserting</code> a new key value pair into our map. Thanks to pattern matching we can represent
+both branches rather cleanly.
+      </p><pre><code class="language-scala">override def +=(kv: (K, V)): PriorityMap.this.type = {
+   tryReload()
+   indexMap.contains(kv._1) match {
+      case true =>
+         update(indexMap(kv._1), kv._2)
+      case false =>
+         val insertIndex = appendIndex
+         heap(insertIndex) = PMapNode[K, V](kv._1, kv._2)
+         indexMap += (kv._1 -> insertIndex)
+         population += 1
+         siftUp(insertIndex)
+    }
+    this
+  }</code></pre><h6 class="title3">New Insertion (Sifting Up)</h6><p style="margin-top: 1em;;margin-bottom: 1em;;">
+Elements added into a binary heap are placed at index <code>n + 1</code> where <code>n</code> is the
+rightmost element in the heap. We then continuously promote the new node up the heap until it's met
+with a parent with a higher order than itself. We'll call this function <code>siftUp</code>, and use it to
+handle the case where a new key is being added to the map.
+      </p><pre><code class="language-scala">@tailrec
+private def siftUp(targetInd: Int): Unit = {
+  parentIndex(targetInd) match {
+    case parentInd if parentInd != THE_ROOF =>
+      val parentNode = heap(parentInd)
+      val currentNode = heap(targetInd)
+
+      currentNode < parentNode match {
+        case true =>
+          swap(targetInd, (parentNode, parentInd))
+          siftUp(parentInd)
+        case false => ()
+      }
+    case _ => ()
+  }
+}
+      </code></pre><p style="margin-top: 1em;;margin-bottom: 1em;;">
+An element is added into a binary heap at the index <code>n + 1</code> where <code>n</code> is the rightmost element in the heap. We then
+      </p><div class="divider"></div><div class="card-action"><a href="https://github.com/rators/PriorityMap/tree/master/src/main/scala/rafcollections/map/sorted">Github</a></div></div></div></div></div></main><footer class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="black-text">Contact Info</h5><ul><li><a class="grey-text text-darken-1" href="mailto:rafaeltrrs112@gmail.com?Subject=Web Contact">Email</a></li></ul></div><div class="col l4 offset-l2 s12"><h5 class="black-text">Connect</h5><li><a class="grey-text text-darken-1" href="https://github.com/rators">Github</a></li><li><a class="grey-text text-darken-1" href="https://www.linkedin.com/in/rafael-torres-60846bb0">Linkedin</a></li></div></div></div><div class="footer-copyright black-text"><div class="container">2015 Copyright</div></div></footer><script type="text/javascript" src="http://cdn.jsdelivr.net/jquery/2.1.1/jquery.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script><script type="text/javascript" src="target/scala-2.11/personal_site-fastopt.js"></script><script src="js/prism.js"></script></body><script type="text/javascript"> $('.button-collapse').sideNav(); </script></html>

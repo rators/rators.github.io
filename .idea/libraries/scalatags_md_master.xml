@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="scalatags-md-master">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../scalatags-md-master/out/artifacts/scalatags_md_master_jar/scalatags-md-master.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

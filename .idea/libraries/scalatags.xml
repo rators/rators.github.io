@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="scalatags">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../scalatags-md-master/scalatags-md-master/src/main/scala/scalatags" />
+    </SOURCES>
+  </library>
+</component>
