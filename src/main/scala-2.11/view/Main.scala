@@ -33,7 +33,7 @@ object Main extends View {
             "Linkedin" -> "https://www.linkedin.com/in/rafael-torres-60846bb0")),
         script(`type` := "text/javascript", src := "http://cdn.jsdelivr.net/jquery/2.1.1/jquery.js"),
         script(src := "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"),
-        script(`type` := "text/javascript", src := "target/scala-2.11/personal_site-fastopt.js"),
+        script(`type` := "text/javascript", src := "js/personal_site-fastopt.js"),
         script(src := "js/prism.js")
       ),
       script(`type` := "text/javascript")(
