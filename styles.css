@@ -13,16 +13,6 @@ body.no-scroll {
     overflow: hidden;
 }
 
-@font-face {
-    font-family: lovelo;
-    src: url(../fonts/Lovelo%20Line%20Bold.otf);
-}
-
-@font-face {
-    font-family: lovelo-black;
-    src: url(../fonts/Lovelo%20Black.otf);
-}
-
 .element {
     height: 100vh;
     z-index: 1;
