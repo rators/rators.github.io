@@ -12,7 +12,7 @@ object Main extends View {
     html(
       head(
         title("Rafael Torres Profile Site"),
-        link(href := "css/prism.css", rel := "stylesheet"),
+        link(href := "prism.css", rel := "stylesheet"),
         link(href := "http://fonts.googleapis.com/icon?family=Material+Icons", rel := "stylesheet"),
         meta(name := "viewport", content := "width=device-width, initial-scale=1"),
         link(`type` := "text/css", rel := "stylesheet", href := "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css",
