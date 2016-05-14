@@ -11,7 +11,7 @@ object Components {
   def card(title: String, topics: Seq[TypedTag[String]], cardContent: Modifier, links: Seq[(String, String)]): Modifier =
     div(cls := "blog-card card white col s12 m12 l10")(
       div(cls := "valign-wrapper")(
-        div(cls := "valign date-brick", backgroundColor := "lightgrey")("May 5th | 2016")),
+        div(cls := "valign date-brick")("May 5th | 2016")),
       div(cls := "card-content black-text")(
         span(cls := "card-title")(title, topics),
         section(cardContent),

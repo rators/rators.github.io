@@ -293,15 +293,15 @@ header, main, footer {
     }
 }
 
-nav.top-bar {
-    height: 122px;
-}
-
 nav .brand-logo {
     color: black;
     font-weight: 200;
-    font-size: 4.2em;
-    margin-top: 30px;
+}
+
+@media only screen and (min-width: 1200px) {
+    .nav-wrapper {
+        margin-right: 240px;
+    }
 }
 
 .card .card-title {
@@ -334,6 +334,9 @@ footer.page-footer {
     padding: 10px;
     width: 100%;
     margin-top: 0;
+    background-color: #103a51;
+    font-weight: 400;
+    color: white;
 }
 
 .chip {
@@ -348,7 +351,8 @@ footer.page-footer {
 }
 
 #about-me-content {
-    font-size: 1.2em;
+    font-size: 15px;
+    font-weight: 300;
 }
 
 img {
@@ -373,3 +377,4 @@ pre.language-scala {
     margin-top: 1em;
     margin-bottom: 1em;
 }
+

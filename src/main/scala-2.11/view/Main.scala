@@ -1,11 +1,9 @@
 package view
 
+import view.Components._
+
 import scalatags.Text.all._
 import scalatags.Text.tags2.title
-import Components._
-
-import scalatags.JsDom.TypedTag
-import scalatags.generic.Namespace
 
 /**
   * The main index view
@@ -14,12 +12,11 @@ object Main extends View {
   def mainLayout(navTitle: String, pageContent: Seq[Modifier] = Seq.empty, topics: Seq[Modifier] = Seq.empty) = {
     html(
       head(
-        title("Rafael Torres Profile Site"),
+        title(s"Rafael Torres | $navTitle"),
         link(href := "http://fonts.googleapis.com/icon?family=Material+Icons", rel := "stylesheet"),
         meta(name := "viewport", content := "width=device-width, initial-scale=1"),
         link(`type` := "text/css", rel := "stylesheet", href := "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css",
           media := "screen,projection"),
-        link(rel := "stylesheet", `type` := "css/stylesheet", href := "styles.css"),
         link(href := "prism.css", rel := "stylesheet")
       ),
       body(
@@ -55,7 +52,7 @@ object Main extends View {
   val dataActivates = "data-activates".attr
   val nav = "nav".tag
   val main = "main".tag
-
+  val code = "code".voidTag
   def sideNav(navTitle: String) = div(
     nav(cls := "top-bar white")(
       a(href := "#", dataActivates := "slide-out", cls := "button-collapse", style := "color: black;")(
@@ -63,15 +60,15 @@ object Main extends View {
       ),
       div(cls := "container")(
         div(cls := "nav-wrapper center-align")(
-          a(cls := "brand-logo")(navTitle),
+          a(cls := "brand-logo")(code(navTitle)),
           ul(id := "slide-out", cls := "side-nav fixed")(
             h1("RT")(color := "black", style := "; color:black;"),
             dividerNavLink,
-            li(a(href := "aboutme.html")("About")),
+            li(backgroundColor := (if (navTitle == "About") "#c2d2dc" else ""))(a(href := "aboutme.html")("About")),
             dividerNavLink,
-            li(a(href := "work.html")("Blog")),
+            li(backgroundColor := (if (navTitle == "Raf's Blog") "#c2d2dc" else ""))(a(href := "work.html")("Blog")),
             dividerNavLink,
-            li(a(href := "#!")("Contact Info | Resume")),
+            li(backgroundColor := (if (navTitle == "") "#c2d2dc" else ""))(a(href := "#!")("Contact Info | Resume")),
             dividerNavLink
           )
         )
