@@ -4,25 +4,35 @@ import scalatags.Text.all._
 import Components._
 import Components.BlogComponents._
 
+import scalatags.Text.TypedTag
+
+
 /**
   * Created by rotor on 5/5/2016.
   */
-object Blog extends View with App {
+object Blog extends View {
+  val KVNode = "theNode" -> "Node"
+  val HeapRules = "heapRules" -> "Rules of the Heaps"
+  val FunctionalDecomp = "functionalDecomp" -> "Functional Decomposition"
+  val Inserting = "insertion" -> "The += Method"
+  val NewInsertion = "siftingUp" -> "New Insertion (Sifting Up)"
+
+  val links = Seq[(String, String)](KVNode, HeapRules, FunctionalDecomp, Inserting, NewInsertion)
+
   def view: Modifier =
     Seq(
       h1(cls := "header center-align left-on-large-only"),
       priorityMapPost
     )
 
-  def priorityMapPost = card("Implementing a Priority Map in Scala (Map-like Queue)", Seq(scalaChip), Seq(
+  def priorityMapPost = card("Implementing a Priority Map in Scala (Map-like Queue) Part 1", Seq(scalaChip), Seq(
     par(
       s"""
-         |During a school assignment that involved graph and
-         |shortest path algorithms I found myself in need of a map-like sorted data structure, with ordering determined by the values and not the keys <code>SortedMap</code>.
+         |I recently found myself in need of a map-like sorted data structure, with ordering determined by the values and not the keys <code>SortedMap</code>.
          |There is an implementation of an immutable
          |PriorityMap on GitHub already, though for the purposes of my assignment I would rather have mutability (I know...sue me).
          |"""),
-    title3("Node"),
+    title3("theNode", "Node"),
     par(
       """Lets start off with a simple map node wrapper object to store our key value pairs. Since our map is sorted by
         |by the value of it's key value pair we will have to implement the <code>Ordered</code> trait as well. We will consume an implicit
@@ -45,7 +55,7 @@ object Blog extends View with App {
         |   ...
         |   }
       """.stripMargin)),
-    title3("Rules of the Heaps"),
+    title3("heapRules", "Rules of the Heaps"),
     par(
       """
         |To manage the ordering of our map we will use the classical heap data structure to store our <code>PMapNodes</code>.
@@ -108,7 +118,7 @@ object Blog extends View with App {
         |
         |  override def size = population
         |  ...""".stripMargin)),
-    title3("Functional Decomposition"),
+    title3("functionalDecomp", "Functional Decomposition"),
     par(
       """
         |I prefer to functionally decompose an operation before I write out the final sequence calls needed to complete
@@ -117,7 +127,7 @@ object Blog extends View with App {
         |this <code>Map</code>, starting with <code>Insertion</code> (the <code>+=</code> method in Scala-lingo).
       """
     ),
-    title3("Inserting AKA +='ing"),
+    title3("insertion", "Inserting AKA +='ing"),
     par(
       """Before we insert an element into our map we must first check if the array representing the heap is full, if it is then we double the size.
         |      """.stripMargin),
@@ -152,7 +162,7 @@ object Blog extends View with App {
         |    }
         |    this
         |  }""".stripMargin),
-    title3("New Insertion (Sifting Up)"),
+    title3("siftingUp", "New Insertion (Sifting Up)"),
     par(
       """
         |Elements added into a binary heap are placed at index <code>n + 1</code> where <code>n</code> is the
@@ -180,13 +190,15 @@ object Blog extends View with App {
       """.stripMargin),
     par(
       """
-        |An element is added into a binary heap at the index <code>n + 1</code> where <code>n</code> is the rightmost element in the heap. We then
+        |That's it for the first part of our <code>PriorityMap</code> implementation. In the next part of this tutorial
+        |I will walk through the <code>update</code> operation where we update the value of a pre-existing Key and sift it to it's correct position in the heap
+        |using <code>sift up</code> or <code>sift down</code>.
       """
     )
   ),
     Seq("Github" -> "https://github.com/rators/PriorityMap/tree/master/src/main/scala/rafcollections/map/sorted"))
 
 
-  override def render: String = Main.mainLayout("Blog", Seq(view)).render
-
+  override def render: String = Main.mainLayout("Blog", Seq(view), Seq(tableOfContents(links))).render
+  override def contents: Option[TypedTag[String]] = Some(tableOfContents(links))
 }

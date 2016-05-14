@@ -1,11 +1,12 @@
 package view
 
 import java.io.{File, PrintWriter}
-
+import Blog.links
 /**
   * The strings of the views.
   */
 object MakeViews extends App {
+  println(links)
 
   def makeView(fileName: String, fileContent: String) = {
     val f = new File(fileName)

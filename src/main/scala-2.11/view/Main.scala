@@ -4,11 +4,14 @@ import scalatags.Text.all._
 import scalatags.Text.tags2.title
 import Components._
 
+import scalatags.JsDom.TypedTag
+import scalatags.generic.Namespace
+
 /**
   * The main index view
   */
 object Main extends View {
-  def mainLayout(navTitle: String, pageContent: Seq[Modifier] = Seq.empty) = {
+  def mainLayout(navTitle: String, pageContent: Seq[Modifier] = Seq.empty, topics: Seq[Modifier] = Seq.empty) = {
     html(
       head(
         title("Rafael Torres Profile Site"),
@@ -21,10 +24,11 @@ object Main extends View {
       ),
       body(
         header(sideNav(navTitle)),
-        main(cls := "")(
+        main(
           div(cls := "row")(
             div(cls := "section col s12 m12 l12")(
-              pageContent
+              pageContent,
+              topics
             )
           )
         ),
@@ -34,10 +38,16 @@ object Main extends View {
         script(`type` := "text/javascript", src := "http://cdn.jsdelivr.net/jquery/2.1.1/jquery.js"),
         script(src := "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"),
         script(`type` := "text/javascript", src := "js/personal_site-fastopt.js"),
-        script(src := "js/prism.js")
-      ),
-      script(`type` := "text/javascript")(
-        """ $('.button-collapse').sideNav(); """
+        script(src := "js/prism.js"),
+        script(`type` := "text/javascript")(
+          """
+            |  $(document).ready(function(){
+            |   $('.button-collapse').sideNav();
+            |    $('.scrollspy').scrollSpy();
+            |    $('.toc-wrapper').pushpin({ top: $('.toc-wrapper').offset().top });
+            |  });
+          """.stripMargin
+        )
       )
     )
   }

@@ -7,6 +7,7 @@ import scalatags.Text.all._
   * The components for materialize css.
   */
 object Components {
+
   def card(title: String, topics: Seq[TypedTag[String]], cardContent: Modifier, links: Seq[(String, String)]): Modifier =
     div(cls := "blog-card card white col s12 m12 l10")(
       div(cls := "valign-wrapper")(
@@ -36,12 +37,22 @@ object Components {
     img(src := "images/scala.png", alt := "Scala Language", cls := "chip-img")("Scala")
   )
 
-  def title3(content: String) = h6(cls := "title3")(content)
-
+  def title3(iD: String, content: String) = h6(id := s"$iD", cls := "title3 section scrollspy")(content)
 
   def javaChip = div(cls := "chip")(
     img(src := "images/java-icon.png", alt := "Java Language", cls := "chip-img")("Java")
   )
+
+  def tableOfContents(links: Seq[(String, String)]) =
+    div(cls := "col hide-on-med-and-down m2 l2")(
+      div(cls := "toc-wrapper")(
+        ul(cls := "section table-of-contents")(
+          for ((link, text) <- links) yield {
+            li(a(href := s"#$link")(text))
+          }
+        )
+      )
+    )
 
   object BlogComponents {
     def par(content: String) =
@@ -49,6 +60,7 @@ object Components {
         raw(content.stripMargin)
       )
   }
+
 
 }
 
