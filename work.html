@@ -127,8 +127,11 @@ I will walk us through the <code>Update</code> operation where we update the val
 as the <code>Remove (-=)</code> <code>Map</code> trait method.
       </p><div class="divider"></div><div class="card-action"><a href="https://github.com/rators/PriorityMap/tree/master/src/main/scala/rafcollections/map/sorted">Github</a></div></div></div><div class="col hide-on-med-and-down m2 l2"><div class="toc-wrapper"><ul class="section table-of-contents"><li><a href="#theNode">Node</a></li><li><a href="#heapRules">Rules of the Heaps</a></li><li><a href="#functionalDecomp">Functional Decomposition</a></li><li><a href="#insertion">The += Method</a></li><li><a href="#siftingUp">New Insertion (Sifting Up)</a></li></ul></div></div></div></div></main><footer class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="black-text">Contact Info</h5><ul><li><a class="grey-text text-darken-1" href="mailto:rafaeltrrs112@gmail.com?Subject=Web Contact">Email</a></li></ul></div><div class="col l4 offset-l2 s12"><h5 class="black-text">Connect</h5><li><a class="grey-text text-darken-1" href="https://github.com/rators">Github</a></li><li><a class="grey-text text-darken-1" href="https://www.linkedin.com/in/rafael-torres-60846bb0">Linkedin</a></li></div></div></div><div class="footer-copyright black-text"><div class="container">2015 Copyright</div></div></footer><script type="text/javascript" src="http://cdn.jsdelivr.net/jquery/2.1.1/jquery.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script><script type="text/javascript" src="js/personal_site-fastopt.js"></script><script src="js/prism.js"></script><script type="text/javascript">
   $(document).ready(function(){
-   $('.button-collapse').sideNav();
+    $('.button-collapse').sideNav();
     $('.scrollspy').scrollSpy();
-    $('.toc-wrapper').pushpin({ top: $('.toc-wrapper').offset().top });
+    $('.toc-wrapper').pushpin({
+           top: $('.toc-wrapper').offset().top,
+           bottom: $(document).height() / 2 });
+console.log($(document).height() / 2)
   });
           </script></body></html>

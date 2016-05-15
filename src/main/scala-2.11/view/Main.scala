@@ -39,9 +39,12 @@ object Main extends View {
         script(`type` := "text/javascript")(
           """
             |  $(document).ready(function(){
-            |   $('.button-collapse').sideNav();
+            |    $('.button-collapse').sideNav();
             |    $('.scrollspy').scrollSpy();
-            |    $('.toc-wrapper').pushpin({ top: $('.toc-wrapper').offset().top });
+            |    $('.toc-wrapper').pushpin({
+            |           top: $('.toc-wrapper').offset().top,
+            |           bottom: $(document).height() / 2 });
+            |console.log($(document).height() / 2)
             |  });
           """.stripMargin
         )
@@ -53,6 +56,7 @@ object Main extends View {
   val nav = "nav".tag
   val main = "main".tag
   val code = "code".voidTag
+
   def sideNav(navTitle: String) = div(
     nav(cls := "top-bar white")(
       a(href := "#", dataActivates := "slide-out", cls := "button-collapse", style := "color: black;")(
