@@ -32,11 +32,14 @@ object About extends View {
           |I've decided to start blogging so I have a place to log my thoughts as I code, and who knows, maybe one of my posts might actually be useful to someone o.0.
           |
           |My posts will cover domains ranging from cloud computing (PaaS, IaaS, etc...) to data structure implementation and even API development (
-          |I like making little libraries). The majority of my code is written Scala so expect to see a lot of <code>underscores</code>"""),
+          |I like making little libraries). The majority of my code is written in Scala so expect to see a lot of <code>underscores</code>"""),
       title3("scalaTimes", "Being a Scala Type"),
       par("""
-          |I'm a Scala Type, which means I primarily code in Scala. I've recently attended Scala Days 2016 and the future is looking extremely bright for the entire Scala ecosystem.
-          |This site was developed using an end-to-end Scala stack and a huge smile on my face the entire time.
+          |I'm a Scala Type to the bones, I enjoy the languages powerful type system and the function/modular approach
+          |to program encouraged by the Scala community.. I've recently attended Scala Days 2016 and had a blast meeting the
+          |people behind all the great libraries and tools I have come to love. The future is looking extremely bright for the entire Scala ecosystem and I
+          |hope to soon begin contributing to a community project in the future..
+          |This site was developed using an end-to-end Scala stack and a huge smile on my face the entire time. You can find the source on my <a href="https://github.com/rators/rators.github.io">Github</a> page.
           | """
       )))
 
