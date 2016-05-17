@@ -42,8 +42,7 @@ object Main extends View {
             |    $('.button-collapse').sideNav();
             |    $('.scrollspy').scrollSpy();
             |    $('.toc-wrapper').pushpin({
-            |           top: $('.toc-wrapper').offset().top,
-            |           bottom: $(document).height() / 2 });
+            |           top: $('.toc-wrapper').offset().top});
             |console.log($(document).height() / 2)
             |  });
           """.stripMargin
@@ -105,7 +104,7 @@ object Main extends View {
       )
     )
 
-  override def render: String = mainLayout("Hi all, I'm Raf o.0").render
+  override def render: String = mainLayout("Rafael Torres").render
 }
 
 
