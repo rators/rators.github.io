@@ -23,8 +23,8 @@ object About extends View {
       par(
         """
           |Worry not, I am not pursuing a career in illegal Pokemon Dealing thanks to SUNY Oswego's CS Department. It's at Oswego that
-          |I have been able completely surround my self with other students who share the same passion for software development that I do. I've probably
-          |logged more hours in Shineman than the janitors, that building is a magnet for great ideas, I'll surely miss that place after graduating this December.
+          |I have been able to work with students who share the same passion for software development that I do. I've probably
+          |logged more hours in Shineman than the janitor lady, that building is a magnet for great ideas, I'll surely miss that place after graduating this December.
         """),
       title3("beyond", "Post-college Days"),
       par(
