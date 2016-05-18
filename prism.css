@@ -382,3 +382,14 @@ pre.language-scala {
     padding-top: 5px; padding-bottom: 5px;
 }
 
+@media only screen and (max-width: 500px) {
+    .cv-header {
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 732px) {
+    .cv-header {
+        text-align: center;
+    }
+}

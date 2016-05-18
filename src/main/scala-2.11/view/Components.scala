@@ -27,9 +27,9 @@ object Components {
     div(cls := "col s12 m12 l12")(
       div(cls := "card")(
         div(cls := "card-content black-text row", style := "padding-bottom:0;")(
-          div(i(cls := "material-icons col s1 m1 l1", style := "font-size:3rem; color:#757575;")("business_center")),
-          div(cls := "col s11 m11 l11")(
-            span(cls := "card-title", style := "color: #757575;")(title),
+          div(i(cls := "material-icons col s12 m12 l1 center-align", style := "font-size:3rem; color:#757575;")("business_center")),
+          div(cls := "col s12 m12 l11")(
+            div(cls := "card-title cv-header", style := "color: #757575;")(title),
             div(cls := "card-content black-text col s12 m12 l12", style := "padding-bottom:0;")(
               div(cls := "row", style := "font-weight:300;")(
                 div(cls := "col s12 m12 l12", style := "color:#757575; font-size:1.05em; font-weight: 400;")("Electrical and Computer Engineering Research Assistant@SUNY OSWEGO"),
@@ -77,9 +77,9 @@ object Components {
     div(cls := "col s12 m12 l12")(
       div(cls := "card")(
         div(cls := "card-content black-text row")(
-          div(i(cls := "material-icons col s1 m1 l1", style := "font-size:3rem; color:#757575;")("lightbulb_outline")),
-          div(cls := "col s11 m11 l11")(
-            span(cls := "card-title", style := "color: #757575;")("Projects"),
+          div(i(cls := "material-icons col s12 m12 l1 center-align", style := "font-size:3rem; color:#757575;")("lightbulb_outline")),
+          div(cls := "col s12 m11 l11")(
+            div(cls := "card-title cv-header col s12 m12", style := "color: #757575;")("Projects"),
             div(cls := "card-content black-text col s12 m12 l12", style := "padding-bottom:0;")(
               div(cls := "row", style := "font-weight:300;")(
                 div(cls := "col s12 m12 l12", style := "color:#757575; font-size:1.05em; font-weight: 400;")("Lead Developer@Team Null : Crashed Martian for Android and PC;"),
@@ -110,9 +110,9 @@ object Components {
     ), div(cls := "col s12 m12 l12")(
       div(cls := "card")(
         div(cls := "card-content black-text row")(
-          div(i(cls := "material-icons col s1 m1 l1", style := "font-size:3rem; color:#757575;")("school")),
-          div(cls := "col s11 m11 l11")(
-            span(cls := "card-title", style := "color: #757575;")("Education"),
+          div(i(cls := "material-icons col s12 m2 l1 center-align", style := "font-size:3rem; color:#757575;")("school")),
+          div(cls := "col s12 m12 l11")(
+            div(cls := "card-title cv-header", style := "color: #757575;")("Education"),
             div(cls := "card-content black-text col s12 m12 l12", style := "padding-bottom:0;")(
               div(cls := "row", style := "font-weight:300;")(
                 div(cls := "col s12 m12 l12", style := "color:#757575; font-size:1.05em; font-weight: 400;")("Computer Science Major@STATE UNIVERSITY OF NEW YORK AT OSWEGO"),
