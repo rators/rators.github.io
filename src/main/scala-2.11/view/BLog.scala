@@ -18,12 +18,7 @@ object Blog extends View {
 
   val links = Seq[(String, String)](KVNode, HeapRules, FunctionalDecomp, Inserting, NewInsertion)
 
-  def view: Modifier =
-    Seq(
-      priorityMapPost
-    )
-
-  def priorityMapPost = card("Implementing a Priority Map in Scala (Map-like Queue) Part 1", Seq(scalaChip), Seq(
+  def priorityMapPost = blogCard("Implementing a Priority Map in Scala (Map-like Queue) Part 1", Seq(scalaChip), Seq(
     par(
       s"""
          |I recently found myself in need of a map-like sorted data structure, with ordering determined by the values and not the keys <code>SortedMap</code>.
@@ -211,7 +206,7 @@ object Blog extends View {
     Seq("Github" -> "https://github.com/rators/PriorityMap/tree/master/src/main/scala/rafcollections/map/sorted"))
 
 
-  override def render: String = Main.mainLayout("Raf's Blog", Seq(view), Seq(tableOfContents(links))).render
+  override def render: String = Main.mainLayout("Raf's Blog", Seq(priorityMapPost), Seq(tableOfContents(links))).render
 
   override def contents: Option[TypedTag[String]] = Some(tableOfContents(links))
 }
