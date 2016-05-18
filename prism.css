@@ -378,3 +378,7 @@ pre.language-scala {
     margin-bottom: 1em;
 }
 
+.cv-position-block > div {
+    padding-top: 5px; padding-bottom: 5px;
+}
+

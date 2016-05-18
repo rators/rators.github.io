@@ -18,6 +18,7 @@ object MakeViews extends App {
   makeView("index.html", Main)
   makeView("aboutme.html", About)
   makeView("work.html", Blog)
+  makeView("cvresume.html", CVResume)
 
   implicit def viewStr(view: View): String = view.render
 }

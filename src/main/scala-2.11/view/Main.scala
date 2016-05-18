@@ -6,7 +6,7 @@ import scalatags.Text.all._
 import scalatags.Text.tags2.title
 
 /**
-  * The main index view
+  * The main index view.
   */
 object Main extends View {
   def mainLayout(navTitle: String, pageContent: Seq[Modifier] = Seq.empty, topics: Seq[Modifier] = Seq.empty) = {
@@ -23,7 +23,7 @@ object Main extends View {
         header(sideNav(navTitle)),
         main(
           div(cls := "row")(
-            div(cls := "section col s12 m12 l12")(
+            div(cls := "section col s12 m12 l12", background := "#FAFAFA", height := "")(
               pageContent,
               topics
             )
@@ -65,13 +65,13 @@ object Main extends View {
         div(cls := "nav-wrapper center-align")(
           a(cls := "brand-logo")(code(navTitle)),
           ul(id := "slide-out", cls := "side-nav fixed")(
-            h1("RT")(color := "black", style := "; color:black;"),
+            h1(a("RT")(href := "index.html", color := "black", style := "color:black;font-size:1em;")),
             dividerNavLink,
             li(backgroundColor := (if (navTitle == "About") "#c2d2dc" else ""))(a(href := "aboutme.html")("About")),
             dividerNavLink,
             li(backgroundColor := (if (navTitle == "Raf's Blog") "#c2d2dc" else ""))(a(href := "work.html")("Blog")),
             dividerNavLink,
-            li(backgroundColor := (if (navTitle == "") "#c2d2dc" else ""))(a(href := "#!")("Contact Info | Resume")),
+            li(backgroundColor := (if (navTitle == "") "#c2d2dc" else ""))(a(href := "cvresume.html")("Contact Info | Resume")),
             dividerNavLink
           )
         )
@@ -81,7 +81,7 @@ object Main extends View {
   )
 
   def pageFooter(footContent: String, links: Seq[(String, String)]) =
-    footer(cls := "page-footer")(
+    footer(cls := "page-footer", marginTop := "0")(
       div(cls := "container")(
         div(cls := "row")(
           div(cls := "col l6 s12")(
@@ -104,7 +104,19 @@ object Main extends View {
       )
     )
 
-  override def render: String = mainLayout("Rafael Torres").render
+  def view =
+    div(cls := "container", style := "margin-top: 5%;") {
+      div(
+        h2(style := "font-weight:300;", cls := "center-align")("Hi All!"),
+        h5(style := "font-weight: 300;", cls := "center-align")(
+         raw("""My name is Rafael Torres. I'm a Computer Science major at SUNY Oswego <code>=></code> soon to be software developer.""")
+        ),
+        h5(style := "font-weight: 300;", cls := "center-align")("""I like to code and have a passion for all things Scala and Jiu Jitsu.""")
+      )
+    }
+
+
+  override def render: String = mainLayout("Rafael Torres", Seq(view)).render
 }
 
 
