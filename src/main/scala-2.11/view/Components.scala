@@ -110,7 +110,7 @@ object Components {
     ), div(cls := "col s12 m12 l12")(
       div(cls := "card")(
         div(cls := "card-content black-text row")(
-          div(i(cls := "material-icons col s12 m2 l1 center-align", style := "font-size:3rem; color:#757575;")("school")),
+          div(i(cls := "material-icons col s12 m12 l1 center-align", style := "font-size:3rem; color:#757575;")("school")),
           div(cls := "col s12 m12 l11")(
             div(cls := "card-title cv-header", style := "color: #757575;")("Education"),
             div(cls := "card-content black-text col s12 m12 l12", style := "padding-bottom:0;")(
