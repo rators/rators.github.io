@@ -71,7 +71,7 @@ object Main extends View {
             dividerNavLink,
             li(backgroundColor := (if (navTitle == "Raf's Blog") "#c2d2dc" else ""))(a(href := "work.html")("Blog")),
             dividerNavLink,
-            li(backgroundColor := (if (navTitle == "") "#c2d2dc" else ""))(a(href := "cvresume.html")("Contact Info | Resume")),
+            li(backgroundColor := (if (navTitle == "Resume") "#c2d2dc" else ""))(a(href := "cvresume.html")("Resume | Skills")),
             dividerNavLink
           )
         )
@@ -89,7 +89,7 @@ object Main extends View {
               footContent
             ),
             ul(
-              li(a(cls := "grey-text text-darken-1", href := """mailto:rafaeltrrs112@gmail.com?Subject=Web Contact""")("Email")))
+              li(a(cls := "grey-text text-darken-1", href := """mailto:rafaeltrrs112@gmail.com""")("Email: rafaeltrrs112@gmail.com")))
           ),
           div(cls := "col l4 offset-l2 s12")(
             h5(cls := "black-text")("Connect"),
@@ -109,7 +109,7 @@ object Main extends View {
       div(
         h2(style := "font-weight:300;", cls := "center-align")("Hi All!"),
         h5(style := "font-weight: 300;", cls := "center-align")(
-         raw("""My name is Rafael Torres. I'm a Computer Science major at SUNY Oswego <code>=></code> soon to be software developer.""")
+          raw("""My name is Rafael Torres. I'm a Computer Science major at SUNY Oswego <code>=></code> soon to be software developer.""")
         ),
         h5(style := "font-weight: 300;", cls := "center-align")("""I like to code and have a passion for all things Scala and Jiu Jitsu.""")
       )

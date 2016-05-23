@@ -13,5 +13,5 @@ object CVResume extends View {
     cvResumeCard("Work Experience")
   )
 
-  override def render: String = Main.mainLayout("CV | Resume", Seq(view)).render
+  override def render: String = Main.mainLayout("Resume", Seq(view)).render
 }

@@ -32,13 +32,10 @@ object Components {
             div(cls := "card-title cv-header", style := "color: #757575;")(title),
             div(cls := "card-content black-text col s12 m12 l12", style := "padding-bottom:0;")(
               div(cls := "row", style := "font-weight:300;")(
-                div(cls := "col s12 m12 l12", style := "color:#757575; font-size:1.05em; font-weight: 400;")("Electrical and Computer Engineering Research Assistant@SUNY OSWEGO"),
-                a(cls := "col s12 m12 l12")("SUMMER 2015"),
+                div(cls := "col s12 m12 l12", style := "color:#757575; font-size:1.05em; font-weight: 400;")("Software Developer Intern@IBM BLUEMIX"),
+                a(cls := "col s12 m12 l12")("SUMMER 2016"),
                 div(cls := "col s12 m12 l12", style := "padding-top:5px")(
-                  """Re-designed a pixel array detector for future use in X-ray imaging research projects in SUNY Oswego and Cornell University. """
-                ),
-                div(cls := "col s12 m12 l12", style := "padding-top: 5px;")(
-                  """Actively sought out the necessary components needed to improve the current PCB design of PAD, all while maintaining backwards compatibility with the existing FPGA data buffer."""
+                  """TBA"""
                 )
               )
             ),
@@ -58,14 +55,14 @@ object Components {
               )
             ),
             dividerNavLink,
-            div(cls := "card-content black-text col s12 m12 l12")(
+            div(cls := "card-content black-text col s12 m12 l12", style := "padding-bottom:30px;")(
               div(cls := "row", style := "font-weight:300;")(
                 div(cls := "col s12 m12 l12", style := "color:#757575; font-size:1.05em; font-weight: 400;")("Electrical and Computer Engineering Research Assistant@SUNY OSWEGO"),
                 a(cls := "col s12 m12 l12")("SUMMER 2015"),
-                div(cls := "col s12 m12 l12", style := "padding-bottom: 5px; padding-top:5px")(
+                div(cls := "col s12 m12 l12", style := "padding-top:5px")(
                   """Re-designed a pixel array detector for future use in X-ray imaging research projects in SUNY Oswego and Cornell University. """
                 ),
-                div(cls := "col s12 m12 l12", style := "padding-top: 5px; padding-bottom: 5px;")(
+                div(cls := "col s12 m12 l12", style := "padding-top: 5px;")(
                   """Actively sought out the necessary components needed to improve the current PCB design of PAD, all while maintaining backwards compatibility with the existing FPGA data buffer."""
                 )
               )
@@ -119,8 +116,28 @@ object Components {
                 div(cls := "cv-position-block")(
                   a(cls := "col s12 m12 l12")("GRADUATION DATE: DEC 2016"),
                   div(cls := "col s12 m12 l12", style := "padding-bottom: 5px; padding-top:5px")(
-                    """GPA: 3.65"""
+                    """GPA: 3.71"""
                   )
+                )
+              )
+            )
+          )
+        )
+      )
+    ),
+    dividerNavLink,
+    div(cls := "col s12 m12 l12")(
+      div(cls := "card")(
+        div(cls := "card-content black-text row")(
+          div(i(cls := "material-icons col s12 m12 l1 center-align", style := "font-size:3rem; color:#757575;")("people_outline")),
+          div(cls := "col s12 m12 l11")(
+            div(cls := "card-title cv-header", style := "color: #757575;")("Social"),
+            div(cls := "card-content black-text col s12 m12 l12", style := "padding-bottom:0;")(
+              div(cls := "row", style := "font-weight:300;")(
+                div(cls := "cv-position-block")(
+                  a(cls := "col s12 m12 l12", href := "https://github.com/rators")("GITHUB: https://github.com/rators"),
+                  a(cls := "col s12 m12 l12", href := "https://www.linkedin.com/in/rafael-torres-60846bb0")("LINKED-IN: https://www.linkedin.com/in/rafael-torres-60846bb0"),
+                  a(cls := "col s12 m12 l12", href := "mailto:rafaeltrrs112@gmail.com")("E-MAIL: rafaeltrrs112@gmail.com")
                 )
               )
             )
